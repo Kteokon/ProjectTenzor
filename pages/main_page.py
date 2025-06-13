@@ -5,10 +5,10 @@ class MainPage(BasePage):
     url = "https://saby.ru/"
     
     def should_be_contacts_nav(self):
-        assert self.is_element_present(*MainPageLocators.NAV_CONTACTS), "No contacts in navigation bar"
+        assert self.is_element_present(*MainPageLocators.NAV_CONTACTS), "Отсутствует раздел с контактами"
 
     def should_be_more_contacts(self):
-        assert self.is_element_present(*MainPageLocators.MORE_CONTACTS), "No more contacts link"
+        assert self.is_element_present(*MainPageLocators.MORE_CONTACTS), "Отсутствует переход в полный список контактов"
 
     def open_contacts_nav(self):
         contacts_nav = self.browser.find_element(*MainPageLocators.NAV_CONTACTS)

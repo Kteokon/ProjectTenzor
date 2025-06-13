@@ -2,7 +2,6 @@ from pages.main_page import MainPage
 from pages.contacts_page import ContactsPage
 from pages.tensor_main_page import TensorMainPage
 from pages.tensor_more_info_page import TensorMoreInfoPage
-import time
 
 class TestFirstScenario():
     MAIN_BLOCK_NAME = "Сила в людях"

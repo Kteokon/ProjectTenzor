@@ -1,6 +1,5 @@
 from pages.base_page import BasePage
 from pages.locators import MoreInfoPageLocators
-import time
 
 class TensorMoreInfoPage(BasePage):
     url = "https://tensor.ru/about"

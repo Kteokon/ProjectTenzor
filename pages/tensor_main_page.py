@@ -1,7 +1,5 @@
 from pages.base_page import BasePage
 from pages.locators import TensorMainPageLocators
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 class TensorMainPage(BasePage):
     url = "https://tensor.ru/"
