@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 class MainPageLocators():
     NAV_CONTACTS = (By.CSS_SELECTOR, ".sbisru-Header__menu-link.sbis_ru-Header__menu-link.sbisru-Header__menu-link--hover")
     MORE_CONTACTS = (By.CSS_SELECTOR, "a[href=\"/contacts\"]")
+    DOWNLOAD = (By.XPATH, "//*[@class=\"sbisru-Footer__container\"]//a[@class=\"sbisru-Footer__link\"][text()=\"Скачать локальные версии\"]")
 
 class ContactsPageLocators():
     TENSOR_LINK = (By.CSS_SELECTOR, ".s-Grid-container a[title=\"tensor.ru\"]")
@@ -28,3 +29,14 @@ class MoreInfoPageLocators():
     def get_block_by_name(block_name):
         return (By.XPATH, f"//h2[text()=\"{block_name}\"]/..")
     PICTURES = (By.XPATH, "./following-sibling::div[1]//img")
+
+class DownloadPageLocators():
+    @staticmethod
+    def get_left_tab_by_name(tab_name):
+        return (By.XPATH, f"//div[@class=\"sbis_ru-VerticalTabs__left\"]//div[text()=\"{tab_name}\"]")
+    @staticmethod
+    def get_upper_tab_by_name(tab_name):
+        return (By.XPATH, f"//div[@class=\"controls-TabControl-tabButtons\"]//span[text()=\"{tab_name}\"]")
+    @staticmethod
+    def get_download(name):
+        return (By.XPATH, f"//h3[contains(text(),\"{name}\")]/../following-sibling::div[1]//a")

@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.firefox.options import Options as OptionsFirefox
+import os
 
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default="chrome",
@@ -15,7 +16,13 @@ def browser(request):
     user_language = request.config.getoption("user_language")
 
     options = Options()
-    options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+    dir = f"{os.path.abspath(os.path.dirname(__file__))}\\files"
+    options = webdriver.ChromeOptions() 
+    options.add_experimental_option("prefs", {"intl.accept_languages": user_language
+                                              , "download.default_directory" : dir
+                                              , 'download.prompt_for_download': False
+                                              , 'download.directory_upgrade': True
+                                              , 'safebrowsing.enabled': True})
 
     options_firefox = OptionsFirefox()
     options_firefox.set_preference("intl.accept_languages", user_language)

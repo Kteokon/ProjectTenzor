@@ -2,11 +2,12 @@ from pages.main_page import MainPage
 from pages.contacts_page import ContactsPage
 
 class TestSecondScenario():
+    # REGION = "Иркутская обл."
     REGION = "г. Москва"
     NEW_REGION = "Камчатский край"
     NEW_URL = "41-kamchatskij-kraj"
 
-    def test_user_can_go_to_contacts_page(self, browser):
+    def test_change_region(self, browser):
         main_page = MainPage(browser)
         main_page.open()
         main_page.should_be_contacts_nav()
