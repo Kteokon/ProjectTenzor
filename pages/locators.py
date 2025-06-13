@@ -6,7 +6,6 @@ class MainPageLocators():
 
 class ContactsPageLocators():
     TENSOR_LINK = (By.CSS_SELECTOR, ".s-Grid-container a[title=\"tensor.ru\"]")
-    @staticmethod
     def get_header_region_by_name(region_name):
         return (By.XPATH, f"//div[@class=\"sbis_ru-container sbisru-Contacts__relative\"]//*[@class=\"sbis_ru-Region-Chooser__text sbis_ru-link\"][text()=\"{region_name}\"]")
     CURRENT_REGION = (By.CSS_SELECTOR, "div.sbis_ru-container.sbisru-Contacts__relative .sbis_ru-Region-Chooser__text.sbis_ru-link")
@@ -17,12 +16,17 @@ class ContactsPageLocators():
         return (By.XPATH, f"//*[@class=\"sbis_ru-link\"][@title=\"{region_name}\"]")
 
 class TensorMainPageLocators():
-    # CONTAINERS = (By.CSS_SELECTOR, ".tensor_ru-container.tensor_ru-section")
-    POWER = (By.XPATH, "//*[@class=\"tensor_ru-container tensor_ru-section\"]//p[text()=\"Сила в людях\"]")
-    # POWER = (By.XPATH, "//p[text()=\"Сила в людях\"]")
-    MORE_INFO = (By.XPATH, "//*[@class=\"tensor_ru-container tensor_ru-section\"]//p[text()=\"Сила в людях\"]/parent::*//a[text()=\"Подробнее\"]")#(By.CSS_SELECTOR, "a[href=\"/about\"]")
+    @staticmethod
+    def get_block_by_name(block_name):
+        return (By.XPATH, f"//*[@class=\"tensor_ru-container tensor_ru-section\"]//p[text()=\"{block_name}\"]/..")
+    MORE_INFO = (By.XPATH, ".//a[text()=\"Подробнее\"]")
 
 class MoreInfoPageLocators():
-    WORKING = (By.XPATH, "//h2[text()=\"Работаем\"]")
-    PHOTOS = (By.XPATH, "//h2[text()=\"Работаем\"]/parent::*/following-sibling::div[1]//img")
+    @staticmethod
+    def get_block_by_name(block_name):
+        return (By.XPATH, f"//h2[text()=\"{block_name}\"]/..")
+    PICTURES = (By.XPATH, "./following-sibling::div[1]//img")
+
+    # WORKING = (By.XPATH, "//h2[text()=\"Работаем\"]")
+    # PHOTOS = (By.XPATH, "//h2[text()=\"Работаем\"]/parent::*/following-sibling::div[1]//img")
     # PHOTO = (By.TAG_NAME, "img")

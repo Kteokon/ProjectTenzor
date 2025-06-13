@@ -4,24 +4,23 @@ import time
 
 class TensorMoreInfoPage(BasePage):
     url = "https://tensor.ru/about"
-
-    def get_working_block(self):
-        return self.browser.find_element(*MoreInfoPageLocators.WORKING)
-
-    def get_working_photos(self):
-        return self.browser.find_elements(*MoreInfoPageLocators.PHOTOS)
     
-    def should_be_working_block(self):
-        assert self.is_element_present(*MoreInfoPageLocators.WORKING)
+    def should_be_the_block(self, block_name):
+        assert self.is_element_present(*MoreInfoPageLocators.get_block_by_name(block_name)), f"Блок \"{block_name}\" не был найден"
     
-    def should_be_working_photos(self):
-        assert self.is_element_present(*MoreInfoPageLocators.PHOTOS)
+    def should_be_pictures(self, the_block):
+        assert the_block.find_elements(*MoreInfoPageLocators.PICTURES), "В блоке не были найдены фотографии"
 
-    def should_be_same_size(self):
-        time.sleep(20)
-        photos = self.get_working_photos()
+    def is_pictures_same_size(self, the_block):
+        pictures = the_block.find_elements(*MoreInfoPageLocators.PICTURES)
         widths, heights = set(), set()
-        for photo in photos:
+        for photo in pictures:
             widths.add(photo.get_attribute("width"))
             heights.add(photo.get_attribute("height"))
-        assert len(widths) == 1 and len(heights) == 1, "Фото разных размеров"
+        assert len(widths) == 1 and len(heights) == 1, "Фотографии разных размеров"
+
+    def get_the_block(self, block_name):
+        return self.browser.find_element(*MoreInfoPageLocators.get_block_by_name(block_name))
+
+    def get_pictures(self, the_block):
+        return the_block.find_elements(*MoreInfoPageLocators.PICTURES)
