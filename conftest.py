@@ -16,28 +16,29 @@ def browser(request):
     user_language = request.config.getoption("user_language")
 
     options = Options()
-    dir = f"{os.path.abspath(os.path.dirname(__file__))}\\files"
-    options = webdriver.ChromeOptions() 
-    options.add_experimental_option("prefs", {"intl.accept_languages": user_language
-                                              , "download.default_directory" : dir
-                                              , 'download.prompt_for_download': False
-                                              , 'download.directory_upgrade': True
-                                              , 'safebrowsing.enabled': True})
+    dir = f"{os.path.abspath(os.path.dirname(__file__))}\\downloaded_files"
 
-    options_firefox = OptionsFirefox()
-    options_firefox.set_preference("intl.accept_languages", user_language)
-
-    # browser = webdriver.Chrome(options=options)
     browser_name = request.config.getoption("browser_name")
     browser = None
     if browser_name == "chrome":
+        options = webdriver.ChromeOptions() 
+        options.add_experimental_option("prefs", {"intl.accept_languages": user_language
+                                                , "download.default_directory" : dir
+                                                , 'download.prompt_for_download': False
+                                                , 'download.directory_upgrade': True
+                                                , 'safebrowsing.enabled': True})
+    
         browser = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
-        print("\nstart firefox browser for test..")
-        # browser = webdriver.Firefox()
-        browser = webdriver.Firefox(options=options_firefox)
+        options = OptionsFirefox()
+        options.set_preference("intl.accept_languages", user_language)
+        options.set_preference("download.default_directory", dir)
+        options.set_preference("download.prompt_for_download", False)
+        options.set_preference("download.directory_upgrade", True)
+        options.set_preference("safebrowsing.enabled", True)
+        
+        browser = webdriver.Firefox(options=options)
     else:
         raise pytest.UsageError("--browser_name should be chrome or firefox")
     yield browser
-    print("\nquit browser..")
     browser.quit()

@@ -3,4 +3,4 @@ __pycache__
 environments/
 .pytest_cache/
 requirements.txt
-files/
+downloaded_files/

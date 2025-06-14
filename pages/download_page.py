@@ -14,7 +14,10 @@ class DownloadPage(BasePage):
     def should_be_upper_tab(self, tab_name):
         assert self.is_element_present(*DownloadPageLocators.get_upper_tab_by_name(tab_name)), f"Отсутствует вкладка {tab_name}"
 
-    def click_download(self, name):
+    def get_download(self, name):
+        return self.browser.find_element(*DownloadPageLocators.get_download(name))
+
+    def download_file(self, name):
         download = self.browser.find_element(*DownloadPageLocators.get_download(name))
         download.click()
 
