@@ -5,7 +5,7 @@ class ContactsPage(BasePage):
     url = "https://saby.ru/contacts"
 
     def should_be_the_region_in_panel(self, region_name):
-        assert self.is_appeared(*ContactsPageLocators.get_region_by_name(region_name)) # TODO: Поменять на проверку того, что js загрузил ссылку для смены региона
+        assert self.is_appeared(*ContactsPageLocators.get_region_by_name(region_name))
 
     def should_be_contacts_list(self):
         assert self.is_appeared(*ContactsPageLocators.CURRENT_CONTACTS_LIST), "Список партнёров отсутствует"
